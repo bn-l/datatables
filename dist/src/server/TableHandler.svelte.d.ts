@@ -1,0 +1,34 @@
+import AbstractTableHandler from './AbstractTableHandler.svelte';
+import ViewBuilder from '../shared/builders/ViewBuilder.svelte';
+import SearchBuilder from './builders/SearchBuilder.svelte';
+import SortBuilder from './builders/SortBuilder.svelte';
+import FilterBuilder from './builders/FilterBuilder.svelte';
+import type { Internationalization, Row, Field, State, ColumnView, TableParams } from './';
+import type { TableHandlerInterface } from '../shared';
+export default class TableHandler<T extends Row = any> extends AbstractTableHandler<T> implements TableHandlerInterface<T> {
+    private fetchHandler;
+    private sortHandler;
+    private selectHandler;
+    private pageHandler;
+    private searchHandler;
+    private filterHandler;
+    private view;
+    i18n: Internationalization;
+    constructor(data?: T[], params?: TableParams<T>);
+    load(callback: (state: State<T>) => Promise<T[]>): void;
+    invalidate(): void;
+    setRowsPerPage(value: number): void;
+    setPage(value: number | 'previous' | 'next' | 'last'): void;
+    clearSearch(): void;
+    createSearch(): SearchBuilder<T>;
+    createSort(field: Field<T>): SortBuilder<T>;
+    clearFilters(): void;
+    createFilter(field: Field<T>): FilterBuilder<T>;
+    select(value: T[keyof T]): void;
+    selectAll(): void;
+    clearSelection(): void;
+    on(event: 'change' | 'clearFilters' | 'clearSearch', callback: () => void): void;
+    createView(columns: ColumnView[]): ViewBuilder<T>;
+    getView(): ViewBuilder<T>;
+    private translate;
+}
