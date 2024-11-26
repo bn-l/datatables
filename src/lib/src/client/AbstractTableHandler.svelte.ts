@@ -11,8 +11,8 @@ export default abstract class AbstractTableHandler<Row>
     protected event             = new EventDispatcher()
     protected rawRows           = $state.raw<Row[]>([])
     protected search            = $state<{ value: string, scope?: Field<Row>[], check?: Check }>({ value: null, scope: undefined })
-    protected sort              = $state<(Sort<Row>)>({})
-
+    
+    public sort                 = $state<(Sort<Row>)>({})
     public filters              = $state<(Filter<Row>)[]>([])
     public rowsPerPage          = $state<number>(10)
     public currentPage          = $state<number>(1)
