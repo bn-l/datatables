@@ -15,41 +15,41 @@
     table.on('change', () => table.element ? table.element.scrollTop = 0 : '')
 </script>
 
-<section bind:clientWidth={table.clientWidth} class:svelte-simple-datatable={!headless}>
+<div bind:clientWidth={table.clientWidth} class="main-container" class:svelte-simple-datatable={!headless}>
 
-    <header>
+    <div class="header">
         {#if header}
             {@render header()}
         {:else if basic === true}
             <Search {table}/>
             <RowsPerPage {table}/>
         {/if}
-    </header>
+    </div>
 
-    <article bind:this={table.element} class="thin-scrollbar">
+    <div bind:this={table.element} class="content thin-scrollbar">
         {@render children()}
-    </article>
+    </div>
 
-    <footer class:divider={basic}>
+    <div class:divider={basic} class="footer">
         {#if footer}
             {@render footer()}
         {:else if basic === true}
             <RowCount {table}/>
             <Pagination {table}/>
         {/if}
-    </footer>
+    </div>
 
-</section>
+</div>
 
 <style>
-    section {
+    .main-container {
         height: 100%;
         display: flex;
         flex-direction: column;
         background: inherit;
         border-radius: inherit;
     }
-    header, footer {
+    .header, .footer {
         padding: 0;
         display: flex;
         flex-direction: row;
@@ -57,40 +57,37 @@
         align-items: center;
         width: 100%;
     }
-    article {
+    .content {
         position: relative;
         height: 100%;
         overflow: auto;
         background: inherit;
     }
-    article :global(.hidden) {
+    .content :global(.hidden) {
         display: none;
     }
-    article::-webkit-scrollbar {
+    .content::-webkit-scrollbar {
         width: 6px;
         height: 6px;
     }
-    article :global(table) {
+    .content :global(table) {
         border-collapse: separate;
         border-spacing: 0;
         width: 100%;
         background: inherit;
     }
-    article :global(table thead) {
+    .content :global(table thead) {
         position: sticky;
         inset-block-start: 0;
         background: inherit;
         z-index: 1;
     }
-    article :global(thead tr) {
+    .content :global(thead tr) {
         background: inherit;
     }
-    article :global(thead tr th) {
+    .content :global(thead tr th) {
         background: inherit;
     }
-
-
-
 
     /* optional global style */
     .svelte-simple-datatable :global(thead tr:first-child th) {
