@@ -11,7 +11,7 @@ export default abstract class AbstractTableHandler<Row> {
         scope?: Field<Row>[];
         check?: Check;
     };
-    protected sort: Sort<Row>;
+    sort: Sort<Row>;
     filters: Filter<Row>[];
     rowsPerPage: number;
     currentPage: number;
