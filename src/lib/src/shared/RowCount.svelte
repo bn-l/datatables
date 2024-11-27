@@ -1,8 +1,7 @@
-<script lang="ts">
+<script lang="ts" generics="Row">
     import type { TableHandlerInterface } from '$lib/src/shared'
 
-    type T = $$Generic<Row>
-    let { table, selection = false }: { table: TableHandlerInterface<T>, selection?: boolean } = $props()
+    let { table, selection = false }: { table: TableHandlerInterface<Row>, selection?: boolean } = $props()
 
     const { start, end, total, selected } = $derived(table.rowCount)
 </script>

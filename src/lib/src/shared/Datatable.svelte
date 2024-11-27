@@ -1,9 +1,9 @@
-<script lang="ts">
+<script lang="ts" generics="Row">
     import type { Snippet } from 'svelte'
     import { type TableHandlerInterface, Search, RowsPerPage, RowCount, Pagination } from '$lib/src/shared'
-    type T = $$Generic<Row>
+
     interface Props {
-        table    : TableHandlerInterface<T>
+        table    : TableHandlerInterface<Row>
         children : Snippet
         basic   ?: boolean
         headless?: boolean

@@ -1,11 +1,10 @@
-<script lang="ts">
+<script lang="ts" generics="Row">
     import type { TableHandlerInterface, Field } from '$lib/src/shared'
     import type { Snippet } from 'svelte'
 
-    type T = $$Generic<Row>
     type Props = {
-        table   : TableHandlerInterface<T>,
-        field   : Field<T>,
+        table   : TableHandlerInterface<Row>,
+        field   : Field<Row>,
         children: Snippet
     }
     let { table, field, children }: Props = $props()

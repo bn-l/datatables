@@ -1,8 +1,7 @@
-<script lang="ts">
+<script lang="ts" generics="Row">
     import type { TableHandlerInterface } from '$lib/src/shared'
 
-    type T = $$Generic<Row>
-    let { table, options = [5, 10, 20, 50, 100] }: { table: TableHandlerInterface<T>, options?: number[] } = $props()
+    let { table, options = [5, 10, 20, 50, 100] }: { table: TableHandlerInterface<Row>, options?: number[] } = $props()
 </script>
 
 <aside>
